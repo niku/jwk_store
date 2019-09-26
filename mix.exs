@@ -7,7 +7,8 @@ defmodule JWKStore.MixProject do
       version: "0.1.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      dialyzer: dialyzer()
     ]
   end
 
@@ -23,7 +24,17 @@ defmodule JWKStore.MixProject do
     [
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:dialyxir, "~> 1.0.0-rc.7", only: :dev, runtime: false},
-      {:credo, "~> 1.1.0", only: :dev, runtime: false}
+      {:credo, "~> 1.1.0", only: :dev, runtime: false},
+      {:bypass, "~> 1.0", only: :test},
+      {:jason, "~> 1.1.2"}
+    ]
+  end
+
+  defp dialyzer do
+    [
+      plt_add_apps: [
+        :inets
+      ]
     ]
   end
 end
